@@ -28,6 +28,7 @@
 		59C9B248FC937F1844693AD7 /* ImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E922B7FB07CFD814B7414F95 /* ImageRenderer.swift */; };
 		6496CA47D3534C0DBBB7CAD1 /* PlaybackPolicyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01821AE8F87F95185E441469 /* PlaybackPolicyController.swift */; };
 		7093804AD5A1A50F711EDEF7 /* TEXReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2427DB513A725D02ADE77B89 /* TEXReaderTests.swift */; };
+		724694DFF64CB93C63F872E3 /* DisplayStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC47BE7B5375FBEA5877C84 /* DisplayStripView.swift */; };
 		7669C327597D8C64364DDBB0 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 9D7D0C648F85691DC8624BBD /* Fixtures */; };
 		7DD4029143EA298A1B3902DF /* WebRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E8FAF81E48282A44AC40B4 /* WebRenderer.swift */; };
 		8095C1F7B1F168EEABC39017 /* ImageKindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F906291AC480CC0330C83B3 /* ImageKindTests.swift */; };
@@ -53,6 +54,7 @@
 		E595F139E5BCF4EB2E374A17 /* LoginItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE7A42A6CF30CBDFBA5764 /* LoginItemManager.swift */; };
 		E75F0336FE7F2C8AA924E7C9 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3EE59193A6225156A6DFF /* MenuBarView.swift */; };
 		EA70BEA3E0A9CEDBF77B2C2F /* ByteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40053CE78B30066381218ADB /* ByteBuilder.swift */; };
+		FD62054E139F2F2BC409A354 /* DisplayAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACD46DAA045AE7AD417CB0 /* DisplayAssignmentTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,7 @@
 		4747274660155517DCB3A013 /* WallpaperDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperDetailView.swift; sourceTree = "<group>"; };
 		49CE3BF7FCC128CF783522F7 /* VideoRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRenderer.swift; sourceTree = "<group>"; };
 		4EA17A04D8E0EC901720A0F9 /* WallpaperItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperItem.swift; sourceTree = "<group>"; };
+		4FACD46DAA045AE7AD417CB0 /* DisplayAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayAssignmentTests.swift; sourceTree = "<group>"; };
 		52796EC4387E2497268B1EEE /* FullscreenDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenDetector.swift; sourceTree = "<group>"; };
 		55B9C61A39220E2B98FD3506 /* PowerMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerMonitor.swift; sourceTree = "<group>"; };
 		5FD3EE59193A6225156A6DFF /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		C1B89A3B0C2835FD13029481 /* DesktopWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopWindowController.swift; sourceTree = "<group>"; };
 		C6D922671E0F7F3731AA532A /* RendererFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererFactory.swift; sourceTree = "<group>"; };
 		C7F32D8B8DE1E7C23086829B /* WallpaperLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperLibrary.swift; sourceTree = "<group>"; };
+		CAC47BE7B5375FBEA5877C84 /* DisplayStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayStripView.swift; sourceTree = "<group>"; };
 		CB796DC3831CBCEE344D60F1 /* JSONValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValueTests.swift; sourceTree = "<group>"; };
 		CEB06D2156F1EA965739BE10 /* ScenePkgExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePkgExtractor.swift; sourceTree = "<group>"; };
 		D58ED1BCBE9762EA4CED816F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 		60188E5A0A0411367B3B0E10 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CAC47BE7B5375FBEA5877C84 /* DisplayStripView.swift */,
 				9AFA2A7A29440BC07BB1CFFA /* GeneralSettingsView.swift */,
 				236FDAA7F71B3E675362925E /* LibraryView.swift */,
 				340A5F83010BE92072E12B82 /* PropertyEditorView.swift */,
@@ -186,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				40053CE78B30066381218ADB /* ByteBuilder.swift */,
+				4FACD46DAA045AE7AD417CB0 /* DisplayAssignmentTests.swift */,
 				E4C3B5150200F8088682F4DD /* DXTDecoderTests.swift */,
 				1F906291AC480CC0330C83B3 /* ImageKindTests.swift */,
 				CB796DC3831CBCEE344D60F1 /* JSONValueTests.swift */,
@@ -380,6 +386,7 @@
 				1C936B415B4714E2F7810BF5 /* ConversionService.swift in Sources */,
 				4430755E4145C05BCC1C0234 /* DXTDecoder.swift in Sources */,
 				BAF3FDCDCEFA5CFDD117662C /* DesktopWindowController.swift in Sources */,
+				724694DFF64CB93C63F872E3 /* DisplayStripView.swift in Sources */,
 				C64822D94AD12EC4D3296048 /* FullscreenDetector.swift in Sources */,
 				AF6E2236D25949AA1A123C29 /* GeneralSettingsView.swift in Sources */,
 				59C9B248FC937F1844693AD7 /* ImageRenderer.swift in Sources */,
@@ -417,6 +424,7 @@
 			files = (
 				EA70BEA3E0A9CEDBF77B2C2F /* ByteBuilder.swift in Sources */,
 				561C1E73127431E610103E08 /* DXTDecoderTests.swift in Sources */,
+				FD62054E139F2F2BC409A354 /* DisplayAssignmentTests.swift in Sources */,
 				8095C1F7B1F168EEABC39017 /* ImageKindTests.swift in Sources */,
 				1BFA083106A8820A01E4EC69 /* JSONValueTests.swift in Sources */,
 				9F8A1841490EF59363780FF1 /* PKGReaderTests.swift in Sources */,
@@ -472,7 +480,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -487,7 +495,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -599,7 +607,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -620,7 +628,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

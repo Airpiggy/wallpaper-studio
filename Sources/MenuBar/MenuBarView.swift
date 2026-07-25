@@ -12,12 +12,26 @@ struct MenuBarView: View {
             .prefix(8))
     }
 
+    private var infos: [AppState.DisplayInfo] {
+        _ = appState.displaysVersion
+        return appState.displayInfos
+    }
+
     var body: some View {
-        if let name = appState.currentWallpaperName {
-            if let reason = appState.policy.pauseReason, reason != .noWallpaper {
-                Text("\(name) — \(reason.message)")
-            } else {
-                Text(name)
+        let independentMulti = infos.count > 1 && !appState.settings.sameOnAllDisplays
+
+        if appState.currentWallpaperName != nil {
+            if independentMulti {
+                // Per-display status lines.
+                ForEach(infos) { info in
+                    Text("\(info.name)：\(info.assignedItem?.project.title ?? "未设置")")
+                }
+            } else if let name = appState.currentWallpaperName {
+                if let reason = appState.policy.pauseReason, reason != .noWallpaper {
+                    Text("\(name) — \(reason.message)")
+                } else {
+                    Text(name)
+                }
             }
             Button(appState.isPaused ? "继续" : "暂停") { appState.togglePause() }
             Button("清除壁纸") { appState.clearWallpaper() }
@@ -30,9 +44,9 @@ struct MenuBarView: View {
         if recent.isEmpty {
             Button("应用示例壁纸") { appState.applySampleWallpaper() }
         } else {
-            Menu("快速切换") {
+            Menu(independentMulti ? "快速切换（主屏）" : "快速切换") {
                 ForEach(recent) { item in
-                    Button(item.project.title) { appState.apply(item) }
+                    Button(item.project.title) { appState.applyToCurrentTarget(item) }
                 }
             }
         }

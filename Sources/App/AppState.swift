@@ -15,6 +15,11 @@ final class AppState: ObservableObject {
     private var screenTracker: ScreenTracker!
 
     @Published var lastError: String?
+    /// Bumped whenever display configuration or per-display assignment changes,
+    /// so the display-strip UI refreshes.
+    @Published var displaysVersion = 0
+    /// The display currently selected in the strip (independent mode target).
+    @Published var selectedDisplayUUID: String?
 
     private var cancellables: Set<AnyCancellable> = []
 
@@ -30,6 +35,11 @@ final class AppState: ObservableObject {
     }
     var isPaused: Bool { policy.pauseReason == .userPaused }
 
+    /// True if `id` is the wallpaper on any connected display.
+    func isApplied(_ id: UUID) -> Bool {
+        desktop.assignments.values.contains { $0.id == id }
+    }
+
     private init() {
         policy = PlaybackPolicyController(desktop: desktop, settings: settings)
         desktop.storeRoot = library.storeRoot
@@ -44,7 +54,7 @@ final class AppState: ObservableObject {
 
     func onLaunch() {
         NSApp.setActivationPolicy(settings.hideDockIcon ? .accessory : .regular)
-        screenTracker = ScreenTracker { [weak self] in self?.desktop.reconcile() }
+        screenTracker = ScreenTracker { [weak self] in self?.handleScreenChange() }
         screenTracker.start()
         policy.start()
         restoreAssignments()
@@ -65,7 +75,51 @@ final class AppState: ObservableObject {
             map[uuid] = item
         }
         desktop.restore(assignments: map)
+        // Extend the current wallpaper onto any display connected now but not in
+        // the persisted map (e.g. booted with a new external display attached).
+        handleScreenChange()
+    }
+
+    /// React to a display connect/disconnect/rearrange: reconcile existing
+    /// windows, then auto-apply the current wallpaper to displays that need it.
+    func handleScreenChange() {
+        desktop.reconcile()
+
+        let connected = NSScreen.screens.compactMap(DesktopWindowController.displayUUID)
+        var assignmentIDs: [String: UUID] = [:]
+        for (uuid, idString) in settings.assignments {
+            if let id = UUID(uuidString: idString) { assignmentIDs[uuid] = id }
+        }
+        let targetID = currentItemID
+        let needing = Self.displaysNeedingAssignment(
+            connected: connected, assignments: assignmentIDs,
+            currentItemID: targetID, sameOnAllDisplays: settings.sameOnAllDisplays
+        )
+        if let id = targetID, let item = library.item(id: id) {
+            for uuid in needing {
+                desktop.setWallpaper(item, to: .display(uuid))
+                settings.assign(itemID: id, to: uuid)
+            }
+        }
         policy.hasWallpaper = desktop.hasWallpaper
+        displaysVersion &+= 1
+    }
+
+    /// Pure decision: which connected displays should receive the current
+    /// wallpaper. Sync mode → any display not already showing it; independent
+    /// mode → only displays with no assignment at all (fall back to main's).
+    static func displaysNeedingAssignment(
+        connected: [String],
+        assignments: [String: UUID],
+        currentItemID: UUID?,
+        sameOnAllDisplays: Bool
+    ) -> [String] {
+        guard let current = currentItemID else { return [] }
+        if sameOnAllDisplays {
+            return connected.filter { assignments[$0] != current }
+        } else {
+            return connected.filter { assignments[$0] == nil }
+        }
     }
 
     // MARK: - Apply
@@ -75,21 +129,82 @@ final class AppState: ObservableObject {
             lastError = item.unsupportedReason ?? "该壁纸暂不支持"
             return
         }
-        let effectiveTarget: DisplayTarget = settings.sameOnAllDisplays ? .all : target
-        if let error = desktop.setWallpaper(item, to: effectiveTarget) {
+        // The target drives the mode: applying to all → sync; to one → independent.
+        switch target {
+        case .all: settings.sameOnAllDisplays = true
+        case .display: settings.sameOnAllDisplays = false
+        }
+        if let error = desktop.setWallpaper(item, to: target) {
             lastError = error
             return
         }
         // Persist assignment(s).
         let uuids: [String]
-        switch effectiveTarget {
+        switch target {
         case .all: uuids = NSScreen.screens.compactMap(DesktopWindowController.displayUUID)
         case .display(let u): uuids = [u]
         }
         settings.assignToAll(itemID: item.id, displayUUIDs: uuids)
         policy.userPaused = false
         policy.hasWallpaper = desktop.hasWallpaper
+        displaysVersion &+= 1
         lastError = nil
+    }
+
+    /// Apply honoring the current mode + strip selection (used by double-click /
+    /// the Apply button). Sync → all displays; independent → selected (or main).
+    func applyToCurrentTarget(_ item: WallpaperItem) {
+        if settings.sameOnAllDisplays {
+            apply(item, to: .all)
+        } else if let uuid = selectedDisplayUUID
+            ?? NSScreen.main.flatMap(DesktopWindowController.displayUUID) {
+            apply(item, to: .display(uuid))
+        } else {
+            apply(item, to: .all)
+        }
+    }
+
+    /// Switch between sync and independent display modes.
+    func setSameOnAllDisplays(_ sync: Bool) {
+        guard sync != settings.sameOnAllDisplays else { return }
+        if sync {
+            // Unify the selected (or main) display's wallpaper across all displays.
+            let uuid = selectedDisplayUUID ?? NSScreen.main.flatMap(DesktopWindowController.displayUUID)
+            let item = (uuid.flatMap { desktop.assignments[$0] } ?? currentItemID.flatMap(library.item(id:)))
+                .flatMap { library.item(id: $0.id) }
+            settings.sameOnAllDisplays = true
+            selectedDisplayUUID = nil
+            if let item { apply(item, to: .all) } else { displaysVersion &+= 1 }
+        } else {
+            settings.sameOnAllDisplays = false
+            selectedDisplayUUID = NSScreen.main.flatMap(DesktopWindowController.displayUUID)
+            displaysVersion &+= 1
+        }
+    }
+
+    /// Per-display info for the strip UI.
+    struct DisplayInfo: Identifiable {
+        let id: String            // display UUID
+        let name: String
+        let aspect: CGFloat       // width / height
+        let assignedItem: WallpaperItem?
+        let isMain: Bool
+    }
+
+    var displayInfos: [AppState.DisplayInfo] {
+        let mainUUID = NSScreen.main.flatMap(DesktopWindowController.displayUUID)
+        return NSScreen.screens
+            .sorted { $0.frame.minX < $1.frame.minX }
+            .compactMap { screen -> AppState.DisplayInfo? in
+                guard let uuid = DesktopWindowController.displayUUID(for: screen) else { return nil }
+                let snapshot = desktop.assignments[uuid]
+                let item = snapshot.flatMap { library.item(id: $0.id) } ?? snapshot
+                let aspect = screen.frame.height > 0 ? screen.frame.width / screen.frame.height : 16.0 / 9.0
+                return AppState.DisplayInfo(
+                    id: uuid, name: screen.localizedName, aspect: aspect,
+                    assignedItem: item, isMain: uuid == mainUUID
+                )
+            }
     }
 
     func applyPropertyValues(_ values: [String: JSONValue], for itemID: UUID) {

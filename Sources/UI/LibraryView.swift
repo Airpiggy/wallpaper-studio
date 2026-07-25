@@ -19,6 +19,8 @@ struct LibraryView: View {
         VStack(spacing: 0) {
             toolbar
             Divider()
+            DisplayStripView()
+            Divider()
             content
             Divider()
             statusBar
@@ -68,12 +70,13 @@ struct LibraryView: View {
                         WallpaperGridCell(
                             item: item,
                             isSelected: selection == item.id,
-                            isCurrent: appState.currentItemID == item.id
+                            isCurrent: appState.isApplied(item.id)
                         )
                         .onTapGesture { selection = item.id }
-                        .onTapGesture(count: 2) { appState.apply(item) }
+                        .onTapGesture(count: 2) { appState.applyToCurrentTarget(item) }
                         .contextMenu {
-                            Button("应用") { appState.apply(item) }
+                            Button("应用") { appState.applyToCurrentTarget(item) }
+                            applyToMenu(for: item)
                             if !item.project.properties.isEmpty || item.kind.isSupported {
                                 Button("详情与设置…") { detailItem = item }
                             }
@@ -106,10 +109,25 @@ struct LibraryView: View {
         .padding(40)
     }
 
+    /// A submenu that applies `item` to a specific display (or all).
+    @ViewBuilder
+    private func applyToMenu(for item: WallpaperItem) -> some View {
+        let infos = appState.displayInfos
+        if infos.count > 1, item.kind.isSupported {
+            Menu("应用到") {
+                Button("所有显示器") { appState.apply(item, to: .all) }
+                Divider()
+                ForEach(infos) { info in
+                    Button(info.name) { appState.apply(item, to: .display(info.id)) }
+                }
+            }
+        }
+    }
+
     private var statusBar: some View {
         HStack {
             if let selected = items.first(where: { $0.id == selection }) {
-                Button("应用") { appState.apply(selected) }
+                Button("应用") { appState.applyToCurrentTarget(selected) }
                     .disabled(!selected.kind.isSupported)
                 Button("详情与设置…") { detailItem = selected }
                 Button("删除", role: .destructive) { appState.library.delete(selected) }
