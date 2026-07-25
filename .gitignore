@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Xcode build artifacts
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+
+# Packaged releases are distributed via GitHub Releases, not the repo
+Releases/

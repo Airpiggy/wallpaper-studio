@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; font-family: -apple-system, sans-serif; }
+    #bg { position: fixed; inset: 0; transition: background 0.4s; }
+    #label {
+      position: fixed; left: 40px; bottom: 40px; color: white;
+      font-size: 42px; text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+    #dot {
+      position: fixed; width: 120px; height: 120px; border-radius: 50%;
+      background: white; opacity: 0.85; left: 50%; top: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div id="bg"></div>
+  <div id="dot"></div>
+  <div id="label">Web 壁纸就绪</div>
+
+  <script>
+    var bg = document.getElementById('bg');
+    var label = document.getElementById('label');
+    var dot = document.getElementById('dot');
+    var speed = 1.0;
+    var showDot = true;
+
+    // WE property listener — the engine calls this on load (all props) and on change.
+    window.wallpaperPropertyListener = {
+      applyUserProperties: function (props) {
+        if (props.bgcolor && props.bgcolor === undefined) {}
+        if (props.bgcolor) {
+          var c = props.bgcolor.value.split(' ').map(function (x) { return Math.round(x * 255); });
+          bg.style.background = 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
+        }
+        if (props.speed) { speed = parseFloat(props.speed.value); }
+        if (props.showdot) {
+          showDot = props.showdot.value;
+          dot.style.display = showDot ? 'block' : 'none';
+        }
+        if (props.greeting) { label.textContent = props.greeting.value; }
+      }
+    };
+
+    // Audio listener registration should not throw even with the stub shim.
+    if (window.wallpaperRegisterAudioListener) {
+      window.wallpaperRegisterAudioListener(function (data) { /* idle */ });
+    }
+
+    var t = 0;
+    function tick() {
+      t += 0.016 * speed;
+      var x = 50 + Math.cos(t) * 30;
+      var y = 50 + Math.sin(t) * 30;
+      dot.style.left = 'calc(' + x + '% - 60px)';
+      dot.style.top = 'calc(' + y + '% - 60px)';
+      requestAnimationFrame(tick);
+    }
+    tick();
+  </script>
+</body>
+</html>

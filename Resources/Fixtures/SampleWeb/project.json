@@ -1,0 +1,39 @@
+{
+  "title": "示例网页壁纸",
+  "type": "web",
+  "file": "index.html",
+  "preview": "preview.jpg",
+  "description": "内置测试网页壁纸，演示属性联动（背景色 / 速度 / 圆点开关 / 文字）。",
+  "tags": ["Web", "Test"],
+  "general": {
+    "properties": {
+      "bgcolor": {
+        "type": "color",
+        "text": "背景颜色",
+        "value": "0.1 0.2 0.45",
+        "order": 0
+      },
+      "speed": {
+        "type": "slider",
+        "text": "运动速度",
+        "value": 1.0,
+        "min": 0.0,
+        "max": 3.0,
+        "step": 0.1,
+        "order": 1
+      },
+      "showdot": {
+        "type": "bool",
+        "text": "显示圆点",
+        "value": true,
+        "order": 2
+      },
+      "greeting": {
+        "type": "textinput",
+        "text": "问候文字",
+        "value": "Web 壁纸就绪",
+        "order": 3
+      }
+    }
+  }
+}

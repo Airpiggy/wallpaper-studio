@@ -1,0 +1,8 @@
+{
+  "title": "示例视频壁纸",
+  "type": "video",
+  "file": "sample.mp4",
+  "preview": "preview.jpg",
+  "description": "内置的测试用视频壁纸（渐变 + 移动圆）。",
+  "tags": ["Abstract", "Test"]
+}
