@@ -78,7 +78,6 @@ private struct DisplayCard: View {
 
                 if let item = info.assignedItem {
                     ThumbnailView(item: item)
-                        .clipShape(RoundedRectangle(cornerRadius: 7))
                 } else {
                     VStack(spacing: 2) {
                         Image(systemName: "display")
@@ -88,6 +87,7 @@ private struct DisplayCard: View {
                 }
             }
             .frame(width: width, height: height)
+            .clipShape(RoundedRectangle(cornerRadius: 7))
             .overlay(
                 RoundedRectangle(cornerRadius: 7)
                     .strokeBorder(borderColor, lineWidth: isSelected ? 3 : 1)
