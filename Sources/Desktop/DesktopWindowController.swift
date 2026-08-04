@@ -27,6 +27,9 @@ final class DesktopWindowController {
     var storeRoot: URL = AppPaths.wallpapersRoot
     /// Whether video wallpapers are muted (mirrors the user setting).
     var muteVideo = true
+    /// Play videos up to this size from memory instead of re-reading them from
+    /// disk on every loop (mirrors the user setting; 0 disables).
+    var videoMemoryCacheLimitMB = 200
 
     // MARK: - Public API
 
@@ -47,6 +50,17 @@ final class DesktopWindowController {
     /// Restore a full set of display→item assignments (e.g. on launch).
     func restore(assignments map: [String: WallpaperItem]) {
         assignments = map
+        reconcile()
+    }
+
+    /// Tear down and recreate every live renderer, keeping assignments — used
+    /// when a setting that only applies at renderer construction changes.
+    func rebuildRenderers() {
+        for (uuid, entry) in entries {
+            entry.renderer.tearDown()
+            entry.window.contentView = nil
+            entries.removeValue(forKey: uuid)
+        }
         reconcile()
     }
 
@@ -96,8 +110,10 @@ final class DesktopWindowController {
                 existing.window.setFrame(screen.frame, display: true)
                 continue
             }
-            guard case .success(let renderer) = RendererFactory.makeRenderer(for: item, storeRoot: storeRoot, muted: muteVideo)
-            else { continue }
+            guard case .success(let renderer) = RendererFactory.makeRenderer(
+                for: item, storeRoot: storeRoot, muted: muteVideo,
+                videoMemoryCacheLimitMB: videoMemoryCacheLimitMB
+            ) else { continue }
             renderer.apply(properties: item.effectiveProperties)
 
             let window = entries[uuid]?.window ?? WallpaperWindow(screen: screen)

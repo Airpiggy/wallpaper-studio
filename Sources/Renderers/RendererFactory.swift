@@ -20,7 +20,8 @@ enum RendererFactory {
     static func makeRenderer(
         for item: WallpaperItem,
         storeRoot: URL,
-        muted: Bool = true
+        muted: Bool = true,
+        videoMemoryCacheLimitMB: Int = 0
     ) -> Result<WallpaperRenderer, FailureReason> {
         switch item.kind {
         case .video:
@@ -28,7 +29,8 @@ enum RendererFactory {
                   FileManager.default.fileExists(atPath: url.path) else {
                 return .failure(.missingAsset)
             }
-            return .success(VideoRenderer(url: url, muted: muted))
+            let limitBytes = Int64(max(0, videoMemoryCacheLimitMB)) * 1_048_576
+            return .success(VideoRenderer(url: url, muted: muted, memoryCacheLimitBytes: limitBytes))
 
         case .web:
             guard let url = item.mainAssetURL(storeRoot: storeRoot),

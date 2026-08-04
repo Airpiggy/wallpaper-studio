@@ -36,6 +36,19 @@ struct GeneralSettingsView: View {
                     get: { settings.muteVideo },
                     set: { settings.muteVideo = $0; appState.desktop.muteVideo = $0 }
                 ))
+
+                Picker("视频内存缓存上限", selection: Binding(
+                    get: { settings.videoMemoryCacheLimitMB },
+                    set: { appState.setVideoMemoryCacheLimit($0) }
+                )) {
+                    Text("关闭").tag(0)
+                    Text("100 MB").tag(100)
+                    Text("200 MB").tag(200)
+                    Text("500 MB").tag(500)
+                    Text("1 GB").tag(1000)
+                }
+                Text("小于该大小的视频常驻内存循环播放，避免每次循环都从磁盘重新读取。")
+                    .font(.caption).foregroundStyle(.secondary)
             }
 
             Section("系统") {

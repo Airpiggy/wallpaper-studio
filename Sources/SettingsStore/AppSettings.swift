@@ -15,6 +15,7 @@ final class AppSettings: ObservableObject {
         static let pauseWhenOccluded = "pauseWhenOccluded"
         static let hideDockIcon = "hideDockIcon"
         static let muteVideo = "muteVideo"
+        static let videoMemoryCacheLimitMB = "videoMemoryCacheLimitMB"
     }
 
     @Published var assignments: [String: String] {
@@ -41,6 +42,11 @@ final class AppSettings: ObservableObject {
     @Published var muteVideo: Bool {
         didSet { defaults.set(muteVideo, forKey: Key.muteVideo) }
     }
+    /// Videos up to this size are played from a memory mapping instead of being
+    /// re-read from disk on every loop. 0 disables the memory path.
+    @Published var videoMemoryCacheLimitMB: Int {
+        didSet { defaults.set(videoMemoryCacheLimitMB, forKey: Key.videoMemoryCacheLimitMB) }
+    }
 
     init() {
         defaults.register(defaults: [
@@ -51,6 +57,7 @@ final class AppSettings: ObservableObject {
             Key.pauseWhenOccluded: true,
             Key.hideDockIcon: false,
             Key.muteVideo: true,
+            Key.videoMemoryCacheLimitMB: 200,
         ])
         assignments = defaults.dictionary(forKey: Key.assignments) as? [String: String] ?? [:]
         sameOnAllDisplays = defaults.bool(forKey: Key.sameOnAllDisplays)
@@ -60,6 +67,7 @@ final class AppSettings: ObservableObject {
         pauseWhenOccluded = defaults.bool(forKey: Key.pauseWhenOccluded)
         hideDockIcon = defaults.bool(forKey: Key.hideDockIcon)
         muteVideo = defaults.bool(forKey: Key.muteVideo)
+        videoMemoryCacheLimitMB = defaults.integer(forKey: Key.videoMemoryCacheLimitMB)
     }
 
     // MARK: - Assignment helpers

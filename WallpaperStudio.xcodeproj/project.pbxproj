@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11617D356CB76414E4ED75AB /* MemoryAssetLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F50D68FAA286CAF6F1215 /* MemoryAssetLoader.swift */; };
 		13550A7BEE9C8EC173D7940B /* WEShim.js in Resources */ = {isa = PBXBuildFile; fileRef = B9BBFFC026D0CD779B070672 /* WEShim.js */; };
 		1BFA083106A8820A01E4EC69 /* JSONValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB796DC3831CBCEE344D60F1 /* JSONValueTests.swift */; };
 		1C10F7D368E0577A0F65A62E /* WallpaperGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBEA53181A9301367075FEBA /* WallpaperGridCell.swift */; };
@@ -21,6 +22,7 @@
 		35DAC07C0E63B97B3E6B4912 /* VideoRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE3BF7FCC128CF783522F7 /* VideoRenderer.swift */; };
 		3E5BD23E711BB1D4000B9C97 /* RendererFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D922671E0F7F3731AA532A /* RendererFactory.swift */; };
 		4430755E4145C05BCC1C0234 /* DXTDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01825F6C4AB392E3AB0AC827 /* DXTDecoder.swift */; };
+		4C9B53A47B3C3CEF60C7B443 /* MemoryAssetLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C896811F6A60705C4B7F53 /* MemoryAssetLoaderTests.swift */; };
 		4CCE60157D5EE4D8F3E2B3E5 /* WallpaperStudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1319B8062C461348ECA12A /* WallpaperStudioApp.swift */; };
 		52C35CF704487EBACA67B064 /* WallpaperRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93D62FB1B6441430D0D2630 /* WallpaperRenderer.swift */; };
 		5527CA2D9FBD4816222A2395 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = BB02A7768046B0FD283741BA /* AppIcon.icns */; };
@@ -51,9 +53,11 @@
 		DED4D6A0BB96C129F55F9D20 /* ScenePkgExtractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA4ED499950292C570AABF /* ScenePkgExtractorTests.swift */; };
 		E0321D4A017A191525C036C4 /* TEXReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F470F8B22EEE71A29D1831 /* TEXReader.swift */; };
 		E1C49D84A35A28710DEE0B78 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74090D8FDCC028ABFBAD73F /* AppState.swift */; };
+		E2E2DC2732BC858F673E5427 /* DiskIOStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142515654D8A6C34236CF5 /* DiskIOStats.swift */; };
 		E595F139E5BCF4EB2E374A17 /* LoginItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE7A42A6CF30CBDFBA5764 /* LoginItemManager.swift */; };
 		E75F0336FE7F2C8AA924E7C9 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3EE59193A6225156A6DFF /* MenuBarView.swift */; };
 		EA70BEA3E0A9CEDBF77B2C2F /* ByteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40053CE78B30066381218ADB /* ByteBuilder.swift */; };
+		F92D8F77ED01649409E88B56 /* VideoRendererDiskIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C954BA5FA78E0F246E9245F3 /* VideoRendererDiskIOTests.swift */; };
 		FD62054E139F2F2BC409A354 /* DisplayAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FACD46DAA045AE7AD417CB0 /* DisplayAssignmentTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +76,7 @@
 		01821AE8F87F95185E441469 /* PlaybackPolicyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackPolicyController.swift; sourceTree = "<group>"; };
 		01825F6C4AB392E3AB0AC827 /* DXTDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXTDecoder.swift; sourceTree = "<group>"; };
 		04568390779AFE0EF599AD16 /* ImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportService.swift; sourceTree = "<group>"; };
+		05C896811F6A60705C4B7F53 /* MemoryAssetLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAssetLoaderTests.swift; sourceTree = "<group>"; };
 		0B82AE113A61927BBE09674E /* ThumbnailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailProvider.swift; sourceTree = "<group>"; };
 		0BA6E2209D59FC1B377C12B9 /* WEProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEProject.swift; sourceTree = "<group>"; };
 		1CCA4ED499950292C570AABF /* ScenePkgExtractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePkgExtractorTests.swift; sourceTree = "<group>"; };
@@ -94,9 +99,11 @@
 		709BFC5DA9A37C8B2A53C9B1 /* WallpaperStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallpaperStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F470F8B22EEE71A29D1831 /* TEXReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEXReader.swift; sourceTree = "<group>"; };
 		8AC187194FECCB85866E3B86 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
+		8C142515654D8A6C34236CF5 /* DiskIOStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskIOStats.swift; sourceTree = "<group>"; };
 		94633FAE13EB401FECCDE8AB /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		9AAE7A42A6CF30CBDFBA5764 /* LoginItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemManager.swift; sourceTree = "<group>"; };
 		9AFA2A7A29440BC07BB1CFFA /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		9C2F50D68FAA286CAF6F1215 /* MemoryAssetLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAssetLoader.swift; sourceTree = "<group>"; };
 		9D7D0C648F85691DC8624BBD /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = Resources/Fixtures; sourceTree = SOURCE_ROOT; };
 		B93D62FB1B6441430D0D2630 /* WallpaperRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperRenderer.swift; sourceTree = "<group>"; };
 		B9BBFFC026D0CD779B070672 /* WEShim.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = WEShim.js; sourceTree = "<group>"; };
@@ -104,6 +111,7 @@
 		C1B89A3B0C2835FD13029481 /* DesktopWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopWindowController.swift; sourceTree = "<group>"; };
 		C6D922671E0F7F3731AA532A /* RendererFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererFactory.swift; sourceTree = "<group>"; };
 		C7F32D8B8DE1E7C23086829B /* WallpaperLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperLibrary.swift; sourceTree = "<group>"; };
+		C954BA5FA78E0F246E9245F3 /* VideoRendererDiskIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRendererDiskIOTests.swift; sourceTree = "<group>"; };
 		CAC47BE7B5375FBEA5877C84 /* DisplayStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayStripView.swift; sourceTree = "<group>"; };
 		CB796DC3831CBCEE344D60F1 /* JSONValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValueTests.swift; sourceTree = "<group>"; };
 		CEB06D2156F1EA965739BE10 /* ScenePkgExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePkgExtractor.swift; sourceTree = "<group>"; };
@@ -195,9 +203,11 @@
 				E4C3B5150200F8088682F4DD /* DXTDecoderTests.swift */,
 				1F906291AC480CC0330C83B3 /* ImageKindTests.swift */,
 				CB796DC3831CBCEE344D60F1 /* JSONValueTests.swift */,
+				05C896811F6A60705C4B7F53 /* MemoryAssetLoaderTests.swift */,
 				E63D2901718B06090644C9FD /* PKGReaderTests.swift */,
 				1CCA4ED499950292C570AABF /* ScenePkgExtractorTests.swift */,
 				2427DB513A725D02ADE77B89 /* TEXReaderTests.swift */,
+				C954BA5FA78E0F246E9245F3 /* VideoRendererDiskIOTests.swift */,
 				217D1DB90A64C0BCB4D39338 /* WEProjectTests.swift */,
 			);
 			path = Tests;
@@ -225,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				E922B7FB07CFD814B7414F95 /* ImageRenderer.swift */,
+				9C2F50D68FAA286CAF6F1215 /* MemoryAssetLoader.swift */,
 				C6D922671E0F7F3731AA532A /* RendererFactory.swift */,
 				49CE3BF7FCC128CF783522F7 /* VideoRenderer.swift */,
 				B93D62FB1B6441430D0D2630 /* WallpaperRenderer.swift */,
@@ -238,6 +249,7 @@
 			children = (
 				193E67AE03FD2A18240A9568 /* App */,
 				98FDE6A86007A1749A8A0AFC /* Desktop */,
+				C584054EF74EFBC57C754CB6 /* Diagnostics */,
 				D4C9F0B97B0A3B46431C1F9A /* Library */,
 				A5A12B3D0C6FDAE075A2711C /* MenuBar */,
 				DA26E0B1E878D6937119DAD0 /* Policy */,
@@ -257,6 +269,14 @@
 				8D1CB3AA56A0189D62698509 /* Tests */,
 				02EB493A3F957DE5250BD6F2 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		C584054EF74EFBC57C754CB6 /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				8C142515654D8A6C34236CF5 /* DiskIOStats.swift */,
+			);
+			path = Diagnostics;
 			sourceTree = "<group>";
 		};
 		D4C9F0B97B0A3B46431C1F9A /* Library */ = {
@@ -386,6 +406,7 @@
 				1C936B415B4714E2F7810BF5 /* ConversionService.swift in Sources */,
 				4430755E4145C05BCC1C0234 /* DXTDecoder.swift in Sources */,
 				BAF3FDCDCEFA5CFDD117662C /* DesktopWindowController.swift in Sources */,
+				E2E2DC2732BC858F673E5427 /* DiskIOStats.swift in Sources */,
 				724694DFF64CB93C63F872E3 /* DisplayStripView.swift in Sources */,
 				C64822D94AD12EC4D3296048 /* FullscreenDetector.swift in Sources */,
 				AF6E2236D25949AA1A123C29 /* GeneralSettingsView.swift in Sources */,
@@ -395,6 +416,7 @@
 				8C87848DC6495488AC4F0A3A /* LibraryStore.swift in Sources */,
 				3021082561C9E65D51ACF428 /* LibraryView.swift in Sources */,
 				E595F139E5BCF4EB2E374A17 /* LoginItemManager.swift in Sources */,
+				11617D356CB76414E4ED75AB /* MemoryAssetLoader.swift in Sources */,
 				E75F0336FE7F2C8AA924E7C9 /* MenuBarView.swift in Sources */,
 				8277997E12EED1B434E5060B /* PKGReader.swift in Sources */,
 				6496CA47D3534C0DBBB7CAD1 /* PlaybackPolicyController.swift in Sources */,
@@ -427,9 +449,11 @@
 				FD62054E139F2F2BC409A354 /* DisplayAssignmentTests.swift in Sources */,
 				8095C1F7B1F168EEABC39017 /* ImageKindTests.swift in Sources */,
 				1BFA083106A8820A01E4EC69 /* JSONValueTests.swift in Sources */,
+				4C9B53A47B3C3CEF60C7B443 /* MemoryAssetLoaderTests.swift in Sources */,
 				9F8A1841490EF59363780FF1 /* PKGReaderTests.swift in Sources */,
 				DED4D6A0BB96C129F55F9D20 /* ScenePkgExtractorTests.swift in Sources */,
 				7093804AD5A1A50F711EDEF7 /* TEXReaderTests.swift in Sources */,
+				F92D8F77ED01649409E88B56 /* VideoRendererDiskIOTests.swift in Sources */,
 				8E3C9CA14EC636BA1AA810DB /* WEProjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,7 +504,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -495,7 +519,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.3.1;
+				MARKETING_VERSION = 0.4.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -607,7 +631,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -628,7 +652,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.3.1;
+				MARKETING_VERSION = 0.4.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

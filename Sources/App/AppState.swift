@@ -69,6 +69,7 @@ final class AppState: ObservableObject {
     /// Rebuild desktop windows from persisted per-display assignments.
     private func restoreAssignments() {
         desktop.muteVideo = settings.muteVideo
+        desktop.videoMemoryCacheLimitMB = settings.videoMemoryCacheLimitMB
         var map: [String: WallpaperItem] = [:]
         for (uuid, idString) in settings.assignments {
             guard let id = UUID(uuidString: idString), let item = library.item(id: id) else { continue }
@@ -269,6 +270,15 @@ final class AppState: ObservableObject {
 
     func setLaunchAtLogin(_ enabled: Bool) {
         LoginItemManager.setEnabled(enabled)
+    }
+
+    /// Change the video memory-cache threshold and rebuild live video wallpapers
+    /// so the new setting takes effect immediately.
+    func setVideoMemoryCacheLimit(_ limitMB: Int) {
+        guard limitMB != settings.videoMemoryCacheLimitMB else { return }
+        settings.videoMemoryCacheLimitMB = limitMB
+        desktop.videoMemoryCacheLimitMB = limitMB
+        desktop.rebuildRenderers()
     }
 
     // MARK: - Debug hooks
