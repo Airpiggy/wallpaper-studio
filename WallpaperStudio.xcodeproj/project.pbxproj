@@ -25,7 +25,6 @@
 		4C9B53A47B3C3CEF60C7B443 /* MemoryAssetLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C896811F6A60705C4B7F53 /* MemoryAssetLoaderTests.swift */; };
 		4CCE60157D5EE4D8F3E2B3E5 /* WallpaperStudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1319B8062C461348ECA12A /* WallpaperStudioApp.swift */; };
 		52C35CF704487EBACA67B064 /* WallpaperRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93D62FB1B6441430D0D2630 /* WallpaperRenderer.swift */; };
-		5527CA2D9FBD4816222A2395 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = BB02A7768046B0FD283741BA /* AppIcon.icns */; };
 		561C1E73127431E610103E08 /* DXTDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3B5150200F8088682F4DD /* DXTDecoderTests.swift */; };
 		59C9B248FC937F1844693AD7 /* ImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E922B7FB07CFD814B7414F95 /* ImageRenderer.swift */; };
 		6496CA47D3534C0DBBB7CAD1 /* PlaybackPolicyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01821AE8F87F95185E441469 /* PlaybackPolicyController.swift */; };
@@ -54,6 +53,7 @@
 		E0321D4A017A191525C036C4 /* TEXReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F470F8B22EEE71A29D1831 /* TEXReader.swift */; };
 		E1C49D84A35A28710DEE0B78 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74090D8FDCC028ABFBAD73F /* AppState.swift */; };
 		E2E2DC2732BC858F673E5427 /* DiskIOStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C142515654D8A6C34236CF5 /* DiskIOStats.swift */; };
+		E54D5E5D9816927195ACE344 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CC5943B3352DC8E034E85529 /* AppIcon.icon */; };
 		E595F139E5BCF4EB2E374A17 /* LoginItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE7A42A6CF30CBDFBA5764 /* LoginItemManager.swift */; };
 		E75F0336FE7F2C8AA924E7C9 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3EE59193A6225156A6DFF /* MenuBarView.swift */; };
 		EA70BEA3E0A9CEDBF77B2C2F /* ByteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40053CE78B30066381218ADB /* ByteBuilder.swift */; };
@@ -107,13 +107,13 @@
 		9D7D0C648F85691DC8624BBD /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fixtures; path = Resources/Fixtures; sourceTree = SOURCE_ROOT; };
 		B93D62FB1B6441430D0D2630 /* WallpaperRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperRenderer.swift; sourceTree = "<group>"; };
 		B9BBFFC026D0CD779B070672 /* WEShim.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = WEShim.js; sourceTree = "<group>"; };
-		BB02A7768046B0FD283741BA /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		C1B89A3B0C2835FD13029481 /* DesktopWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopWindowController.swift; sourceTree = "<group>"; };
 		C6D922671E0F7F3731AA532A /* RendererFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererFactory.swift; sourceTree = "<group>"; };
 		C7F32D8B8DE1E7C23086829B /* WallpaperLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperLibrary.swift; sourceTree = "<group>"; };
 		C954BA5FA78E0F246E9245F3 /* VideoRendererDiskIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRendererDiskIOTests.swift; sourceTree = "<group>"; };
 		CAC47BE7B5375FBEA5877C84 /* DisplayStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayStripView.swift; sourceTree = "<group>"; };
 		CB796DC3831CBCEE344D60F1 /* JSONValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValueTests.swift; sourceTree = "<group>"; };
+		CC5943B3352DC8E034E85529 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		CEB06D2156F1EA965739BE10 /* ScenePkgExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePkgExtractor.swift; sourceTree = "<group>"; };
 		D58ED1BCBE9762EA4CED816F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4C3B5150200F8088682F4DD /* DXTDecoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXTDecoderTests.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		322FBA06047507AF72FD8D9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BB02A7768046B0FD283741BA /* AppIcon.icns */,
+				CC5943B3352DC8E034E85529 /* AppIcon.icon */,
 				9D7D0C648F85691DC8624BBD /* Fixtures */,
 				B9BBFFC026D0CD779B070672 /* WEShim.js */,
 			);
@@ -386,7 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5527CA2D9FBD4816222A2395 /* AppIcon.icns in Resources */,
+				E54D5E5D9816927195ACE344 /* AppIcon.icon in Resources */,
 				7669C327597D8C64364DDBB0 /* Fixtures in Resources */,
 				13550A7BEE9C8EC173D7940B /* WEShim.js in Resources */,
 			);
@@ -504,7 +504,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -519,7 +519,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.4.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -533,7 +533,7 @@
 		53CAB2F7566C2E5A503A108B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Sources/App/Info.plist;
@@ -549,7 +549,7 @@
 		7AC4CD922E8751746F7B897D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Sources/App/Info.plist;
@@ -631,7 +631,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -652,7 +652,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.4.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

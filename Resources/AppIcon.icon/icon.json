@@ -1,0 +1,23 @@
+{
+  "fill" : {
+    "automatic-gradient" : "extended-srgb:0.46258,0.55755,0.92315,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "glass" : false,
+          "image-name" : "artwork.png",
+          "name" : "artwork"
+        }
+      ],
+      "name" : "Wallpaper Studio"
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

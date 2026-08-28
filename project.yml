@@ -4,12 +4,15 @@ options:
   deploymentTarget:
     macOS: "14.0"
   createIntermediateGroups: true
+  fileTypes:
+    icon:
+      file: true
 
 settings:
   base:
     SWIFT_VERSION: "5.10"
-    MARKETING_VERSION: "0.4.0"
-    CURRENT_PROJECT_VERSION: "5"
+    MARKETING_VERSION: "0.4.1"
+    CURRENT_PROJECT_VERSION: "6"
     DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Automatic
     ENABLE_HARDENED_RUNTIME: NO
@@ -22,7 +25,12 @@ targets:
       - path: Sources
       - path: Resources/WEShim.js
         buildPhase: resources
-      - path: Resources/AppIcon.icns
+      # Sole source of the app icon. actool compiles it into Assets.car for
+      # CFBundleIconName and emits a matching AppIcon.icns for CFBundleIconFile,
+      # so both lookup paths get the Tahoe squircle rendering. Shipping a
+      # pre-Tahoe icns alongside would reintroduce the grey backing plate on any
+      # surface that happened to read it.
+      - path: Resources/AppIcon.icon
         buildPhase: resources
       - path: Resources/Fixtures
         type: folder
@@ -32,9 +40,9 @@ targets:
       properties:
         CFBundleName: Wallpaper Studio
         CFBundleDisplayName: Wallpaper Studio
-        CFBundleShortVersionString: "0.4.0"
-        CFBundleVersion: "5"
-        CFBundleIconFile: AppIcon
+        CFBundleShortVersionString: "0.4.1"
+        CFBundleVersion: "6"
+        CFBundleIconName: AppIcon
         LSMinimumSystemVersion: "14.0"
         LSUIElement: false
         NSHumanReadableCopyright: ""
@@ -45,7 +53,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.wallpaperstudio.app
         GENERATE_INFOPLIST_FILE: NO
         COMBINE_HIDPI_IMAGES: YES
-        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 
   WallpaperStudioTests:
     type: bundle.unit-test
