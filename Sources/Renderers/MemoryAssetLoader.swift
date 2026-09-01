@@ -12,6 +12,15 @@ import UniformTypeIdentifiers
 /// per day. Feeding the bytes through an `AVAssetResourceLoaderDelegate` on a
 /// custom URL scheme keeps every loop in RAM.
 ///
+/// Off by default since v0.4.2. Measured against a 60MB/24s/20Mbps wallpaper,
+/// memory-backed playback wedged 4-7 times per 5 minutes — the player parking at
+/// rate 0, or waiting for data that never arrived — while the same clip played
+/// off disk for 5 minutes without a single stall. Serving the content-info
+/// request's data alongside it, and letting the player buffer, were both tried
+/// and neither helped. `VideoRenderer`'s watchdog abandons this path after
+/// repeated stalls, so enabling the setting degrades to disk rather than to a
+/// frozen desktop.
+///
 /// The backing store is a memory-*mapped* `Data` rather than a plain read: the
 /// pages are clean and file-backed, so they live in the unified buffer cache,
 /// can be reclaimed for free under memory pressure (degrading to an occasional

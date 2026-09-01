@@ -51,6 +51,10 @@ final class PlaybackPolicyController: ObservableObject {
         let nc = NSWorkspace.shared.notificationCenter
         nc.addObserver(self, selector: #selector(screensSlept), name: NSWorkspace.screensDidSleepNotification, object: nil)
         nc.addObserver(self, selector: #selector(screensWoke), name: NSWorkspace.screensDidWakeNotification, object: nil)
+        // System wake is a separate notification from screen wake. Observing
+        // only the latter risks staying pinned to .displayAsleep forever if it
+        // is missed during a run of dark wakes.
+        nc.addObserver(self, selector: #selector(systemWoke), name: NSWorkspace.didWakeNotification, object: nil)
         evaluate()
     }
 
@@ -64,8 +68,27 @@ final class PlaybackPolicyController: ObservableObject {
     /// Re-evaluate when settings toggles change.
     func settingsChanged() { evaluate() }
 
-    @objc private func screensSlept() { displayAsleep = true; evaluate() }
-    @objc private func screensWoke() { displayAsleep = false; evaluate() }
+    @objc private func screensSlept() {
+        WallpaperLog.policy.notice("screens slept")
+        displayAsleep = true
+        evaluate()
+    }
+
+    @objc private func screensWoke() {
+        WallpaperLog.policy.notice("screens woke")
+        displayAsleep = false
+        evaluate()
+    }
+
+    @objc private func systemWoke() {
+        WallpaperLog.policy.notice("system woke")
+        displayAsleep = false
+        evaluate()
+        // Screen state can still be settling right after wake; re-check once it has.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.evaluate()
+        }
+    }
 
     // MARK: - Decision
 
@@ -92,7 +115,12 @@ final class PlaybackPolicyController: ObservableObject {
             desktop.pauseAll()
             endActivity()
         }
-        if reason != pauseReason { pauseReason = reason }
+        if reason != pauseReason {
+            WallpaperLog.policy.notice(
+                "pause reason: \(String(describing: self.pauseReason), privacy: .public) -> \(String(describing: reason), privacy: .public)"
+            )
+            pauseReason = reason
+        }
     }
 
     // MARK: - App Nap

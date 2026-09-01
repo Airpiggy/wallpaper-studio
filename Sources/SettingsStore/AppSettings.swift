@@ -16,6 +16,7 @@ final class AppSettings: ObservableObject {
         static let hideDockIcon = "hideDockIcon"
         static let muteVideo = "muteVideo"
         static let videoMemoryCacheLimitMB = "videoMemoryCacheLimitMB"
+        static let didDisableVideoMemoryCache = "didDisableVideoMemoryCacheV2"
     }
 
     @Published var assignments: [String: String] {
@@ -44,6 +45,9 @@ final class AppSettings: ObservableObject {
     }
     /// Videos up to this size are played from a memory mapping instead of being
     /// re-read from disk on every loop. 0 disables the memory path.
+    ///
+    /// Off by default: shipped on in v0.4.0, it turned out to wedge playback
+    /// every minute or so on high-bitrate video (see `MemoryVideoAsset`).
     @Published var videoMemoryCacheLimitMB: Int {
         didSet { defaults.set(videoMemoryCacheLimitMB, forKey: Key.videoMemoryCacheLimitMB) }
     }
@@ -57,7 +61,7 @@ final class AppSettings: ObservableObject {
             Key.pauseWhenOccluded: true,
             Key.hideDockIcon: false,
             Key.muteVideo: true,
-            Key.videoMemoryCacheLimitMB: 200,
+            Key.videoMemoryCacheLimitMB: 0,
         ])
         assignments = defaults.dictionary(forKey: Key.assignments) as? [String: String] ?? [:]
         sameOnAllDisplays = defaults.bool(forKey: Key.sameOnAllDisplays)
@@ -68,6 +72,14 @@ final class AppSettings: ObservableObject {
         hideDockIcon = defaults.bool(forKey: Key.hideDockIcon)
         muteVideo = defaults.bool(forKey: Key.muteVideo)
         videoMemoryCacheLimitMB = defaults.integer(forKey: Key.videoMemoryCacheLimitMB)
+
+        // v0.4.0 and v0.4.1 defaulted this on, and the stored value is that
+        // default rather than a choice anyone made. Clear it once so existing
+        // installs stop freezing; a deliberate re-enable afterwards sticks.
+        if !defaults.bool(forKey: Key.didDisableVideoMemoryCache) {
+            defaults.set(true, forKey: Key.didDisableVideoMemoryCache)
+            if videoMemoryCacheLimitMB != 0 { videoMemoryCacheLimitMB = 0 }
+        }
     }
 
     // MARK: - Assignment helpers

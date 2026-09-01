@@ -37,7 +37,7 @@ struct GeneralSettingsView: View {
                     set: { settings.muteVideo = $0; appState.desktop.muteVideo = $0 }
                 ))
 
-                Picker("视频内存缓存上限", selection: Binding(
+                Picker("视频内存缓存上限（实验性）", selection: Binding(
                     get: { settings.videoMemoryCacheLimitMB },
                     set: { appState.setVideoMemoryCacheLimit($0) }
                 )) {
@@ -47,7 +47,11 @@ struct GeneralSettingsView: View {
                     Text("500 MB").tag(500)
                     Text("1 GB").tag(1000)
                 }
-                Text("小于该大小的视频常驻内存循环播放，避免每次循环都从磁盘重新读取。")
+                Text("""
+                小于该大小的视频常驻内存循环播放，可减少磁盘读取量。\
+                但实测在高码率视频上会导致播放卡住，因此默认关闭；\
+                若开启后出现卡顿，程序会自动退回磁盘播放。
+                """)
                     .font(.caption).foregroundStyle(.secondary)
             }
 
